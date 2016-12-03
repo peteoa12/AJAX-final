@@ -5,15 +5,25 @@
     <title>Show Mate</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="assets/css/main.min.css">
+    <!-- <link rel="stylesheet" href="assets/css/main.min.css"> -->
 </head>
 
 <body>
+    <style type="text/css">
+        #map {
+            width:300px;
+            height: 300px;
+        }
+
+        form {
+            padding: 30px;
+        }
+    </style>
    <div id="map"></div>
     <div>
         <form name="search">
-            <label for="query">Search</label>
-            <input type="text">
+            <label for="query">Search Concerts</label>
+            <input name="q" type="text" value="ex:Flaming Lips">
             <button type="submit">Search</button>
             <div class="results">
                 <ul>
