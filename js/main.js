@@ -9,11 +9,8 @@ var UberApi = (function(options){
   var shared = {};
   var options = options || {};
   var clientID = 'G4fQOJA6iRyCzWcqy8mFihrZK3orC7uc';
-  var serverToken = 'iJT1w-2xv6937ZmlvxHq3qQpJWwNhFXG5W53xFQ2';
-  var secret = 'CmvdKYiLSfT5t7LAuv9Rd0W-U7cBMy-R7FpLN8-j';
-  var accessToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOltdLCJzdWIiOiI3NDA3ZjhkMy0xMzc1LTQ4M2UtODI3Yi01N2U4MGJmYjhkOTAiLCJpc3MiOiJ1YmVyLXVzMSIsImp0aSI6ImFiY2JjY2QxLWI3NTItNDNmNy1hZDZkLTc0MjZkYzA0YWMzZCIsImV4cCI6MTQ4MzA0NzcyMiwiaWF0IjoxNDgwNDU1NzIyLCJ1YWN0IjoiTDRpekRtTFBGMWR2c1FFVTVWTHhSZ2VoRFFmZmdWIiwibmJmIjoxNDgwNDU1NjMyLCJhdWQiOiJHNGZRT0pBNmlSeUN6V2NxeThtRmloclpLM29yQzd1YyJ9.bo4l1WfQrXZG7nxRdN5ezdsk84oVJApTzyEs_fNKIY63H79P7EU_b9neN1sPjwalDLXTQK2Zj9CMm3Gh2oXUZYLRN_Y0lqG6XoYsPvx_RCwfR8kq5RUVyLh8tcGcIqLVeciu4PAQoUp-eNzC5l-W-Utq-criAB7NKukdHnZOWB4ztMqJ4QvMQAocYnOC05D3fpcMUX3lTFmxNC24qClqao2TtbLTzTPVFRXPwEYZ8uY6g6_-XqlK-P4liK7PoJWswcwwTwPdnAE2YvXKqUT3fQs9BEESxBuo8QVN-gcULK5djwaW0t5J8GAos7ZGv_bxGakmGryt8jA9u-g1c3GLzg';
   
-  var url = 'https://login.uber.com/oauth/v2/authorize?client_id='+clientID+'&response_type=code';
+  var url = 'https://m.uber.com/ul?client_id=G4fQOJA6iRyCzWcqy8mFihrZK3orC7uc&action=setPickup&pickup[latitude]=37.775818&pickup[longitude]=-122.418028&pickup[nickname]=UberHQ&pickup[formatted_address]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]=37.802374&dropoff[longitude]=-122.405818&dropoff[nickname]=Coit%20Tower&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383';
     
   function setupListeners() {
     setupSearch();
@@ -31,12 +28,12 @@ var UberApi = (function(options){
 
         $.ajax({
           url: url,
-          type: 'GET',
+          method: 'GET',
           dataType: 'json',
           data: params,
         })
-        .done(function(response) {
-          console.log("success",response);
+        .done(function(data) {
+          console.log("success",data);
         });
 
         return false;
@@ -61,7 +58,10 @@ UberApi.init();
 
 var GoogleMapApi = (function(options){
 	
-  var myLatLng = {lat: 33.742712, lng: -84.338520}; // initial center point of map
+  var myLatLng = {
+      lat: 33.742712, 
+      lng: -84.338520
+      }; // initial center point of map
 
   var map, infoWindow;
 
