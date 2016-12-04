@@ -4,11 +4,6 @@
 
 //=========================================================================================================//
 
-$( function() {
-  $( "#datepicker" ).datepicker();
-} );
-
-
 var BandsApi = (function(options){
 
   var shared = {};
@@ -57,6 +52,7 @@ var BandsApi = (function(options){
               }
             },
             title: r.venue.name,
+            url:r.url
           });
         
         }
@@ -79,9 +75,9 @@ BandsApi.init();
 
 //=========================================================================================================//
 
-var GoogleMapApi = (function(options){
+var GoogleMapApi = (function(options, r){
   
-  var myLatLng = {lat: 33.742712, lng: -84.338520}; // initial center point of map
+  var myLatLng = {lat: 38.4394932, lng: -88.8991953}; // initial center point of map
 
   var map, infoWindow;
 
@@ -90,18 +86,6 @@ var GoogleMapApi = (function(options){
     map = new google.maps.Map(document.getElementById('map'), {
       center: myLatLng,
       zoom: 3
-    });
-    
-    var marker = new google.maps.Marker({
-      position:myLatLng,
-      map: map,
-      title: 'My House',
-      animation: google.maps.Animation.DROP
-    });
-    
-    google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent('My House');
-        infowindow.open(map, this);
     });
   };
   
@@ -120,7 +104,8 @@ var GoogleMapApi = (function(options){
   };
 
   function createInfoWindow(result, marker) {
-    var contentString = `<h3 class="marker-title">${result.title}<h3>`
+    console.log(r);
+    var contentString = `<a href=${result.url} class="marker-title">${result.title}<a>`
     infowindow.setContent(contentString);
   };
 
@@ -130,6 +115,46 @@ var GoogleMapApi = (function(options){
   };
 
 }());
+
+//=========================================================================================================//
+
+//---------------------------------------------Hotwire-------------------------------------------------//
+
+//=========================================================================================================//
+
+var HotwireApi = (function(options){
+
+  var shared = {};
+  var options = options || {};
+     
+  function setupListeners() {
+    setupSearch();
+  }
+
+  function setupSearch(){
+    var url = 'http://api.hotwire.com/v1/tripstarterl/hotel?apikey=n9ktvyrgwumm63b5ddrkc98w';
+
+      $.ajax({
+        url: url,
+        method: 'GET',
+        dataType: 'jsonp'
+      })
+      .done(function(data) {
+        console.log("success", data);
+      })      
+  }
+
+  var init = function() {
+    setupListeners();
+  };
+  shared.init = init;
+
+  return shared;
+
+
+}());
+HotwireApi.init();
+
 
 
 
