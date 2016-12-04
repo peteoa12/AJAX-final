@@ -1,17 +1,19 @@
 //=========================================================================================================//
 
-//----------------------------------------------UBER-------------------------------------------------------//
+//----------------------------------------------Bands In Town API-------------------------------------------------------//
 
 //=========================================================================================================//
 
-var UberApi = (function(options){
+$( function() {
+  $( "#datepicker" ).datepicker();
+} );
+
+
+var BandsApi = (function(options){
 
   var shared = {};
   var options = options || {};
-  var clientID = 'G4fQOJA6iRyCzWcqy8mFihrZK3orC7uc';
-  
-  var url = 'https://m.uber.com/ul?client_id=G4fQOJA6iRyCzWcqy8mFihrZK3orC7uc&action=setPickup&pickup[latitude]=37.775818&pickup[longitude]=-122.418028&pickup[nickname]=UberHQ&pickup[formatted_address]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]=37.802374&dropoff[longitude]=-122.405818&dropoff[nickname]=Coit%20Tower&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383';
-    
+     
   function setupListeners() {
     setupSearch();
   }
@@ -21,24 +23,45 @@ var UberApi = (function(options){
         // console.log("searching");
 
         var $e = $(event.currentTarget),
-            $form = $e.closest('form'),
-            params = {},
-            $results = $form.find('.results ul'),
-            keyword = $form.find('input[name=q]').val();
+            $form = $e.closest('form'),  
+            artist = $form.find('input[name=q]').val();
 
         $.ajax({
-          url: url,
+          url: 'http://api.bandsintown.com/artists/'+artist+'/events.json?/api_version=2.0&app_id=Gigabite',
           method: 'GET',
-          dataType: 'json',
-          data: params,
+          dataType: 'jsonp'
         })
         .done(function(data) {
-          console.log("success",data);
+          // console.log("success",data);
+          displayDates(data);
         });
+        //Remember to install the widget
 
         return false;
     });
   }
+
+   function displayDates(data, result) {
+
+    for (var i = 0; i < data.length; i++) {
+        var r = data[i];
+        console.log(r);
+       
+        if(r.venue){
+          
+          GoogleMapApi.createMarker({
+            geometry: {
+              location: { 
+                lng: r.venue.longitude,
+                lat: r.venue.latitude
+              }
+            },
+            title: r.venue.name,
+          });
+        
+        }
+      }
+    }
 
   var init = function() {
     setupListeners();
@@ -49,7 +72,7 @@ var UberApi = (function(options){
 
 
 }());
-UberApi.init();
+BandsApi.init();
 //=========================================================================================================//
 
 //---------------------------------------------Google Maps-------------------------------------------------//
@@ -57,11 +80,8 @@ UberApi.init();
 //=========================================================================================================//
 
 var GoogleMapApi = (function(options){
-	
-  var myLatLng = {
-      lat: 33.742712, 
-      lng: -84.338520
-      }; // initial center point of map
+  
+  var myLatLng = {lat: 33.742712, lng: -84.338520}; // initial center point of map
 
   var map, infoWindow;
 
