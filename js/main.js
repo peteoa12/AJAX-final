@@ -52,7 +52,8 @@ var BandsApi = (function(options){
               }
             },
             title: r.venue.name,
-            url:r.url
+            url:r.url,
+            date:new Date(r.datetime,['America/New_York']).toLocaleString()  
           });
         
         }
@@ -105,7 +106,8 @@ var GoogleMapApi = (function(options, r){
 
   function createInfoWindow(result, marker) {
     console.log(r);
-    var contentString = `<a href=${result.url} class="marker-title">${result.title}<a>`
+    var contentString = `<h3 class="marker-title">Venue: ${result.title}<h3>
+    <p class="show-date">${result.date}</p>`
     infowindow.setContent(contentString);
   };
 
