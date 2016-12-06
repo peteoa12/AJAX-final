@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    <title>Gigabite</title>
+    <title>On Tour</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <!-- <link rel="stylesheet" href="assets/css/main.min.css"> -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 </head>
 
 <body>
@@ -23,13 +23,18 @@
         a {
             text-decoration: none;
         }
+
+        .show-date {
+            font-size: 12px;
+            font-weight: normal;
+        }
     </style>
    <div id="map"></div>
     <div>
 
         <form name="search">
             <label for="query">Search Concerts</label>
-            <input name="q" type="text" value="Flaming Lips">
+            <input name="q" type="text" placeholder="ex:Flaming Lips">
             <button type="submit">Search</button>
             <div class="results">
                 <ul>
