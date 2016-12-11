@@ -23,7 +23,7 @@ var GoogleMapApi = (function(options) {
     };
 
    
-    function createMarker(result) {
+    function createMarker(result, type) {
         var marker = new google.maps.Marker({
             position: result.geometry.location,
             map: map,
@@ -104,7 +104,7 @@ var BandsApi = (function(options) {
                     dataType: 'jsonp'
                 })
                 .done(function(data) {
-                    // console.log(data);
+                    console.log(data);
                     errorHandeling(data, artist);
                 });
 
@@ -141,7 +141,7 @@ var BandsApi = (function(options) {
     function displayDates(data, result, $results) {
         for (var i = 0; i < data.length; i++) {
             var r = data[i];
-            // console.log(r);
+            console.log(r);
 
             if (r.venue) {
 
@@ -157,10 +157,7 @@ var BandsApi = (function(options) {
                     date: new Date(r.datetime),
                     tickets: r.ticket_url
                 });
-
             }
-
-            // $('.results').append('');
         }
     }
 
@@ -198,29 +195,19 @@ var GooglePlacesApi = (function() {
                 dataType: 'json'
             })
             .done(function(data) {
-                // console.log("success", data);
+                console.log("success", data);
                 displayPins(data);
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR, textStatus, errorThrown)
             })
     }
 
-    function displayPins(data) {
-        for (var i = 0; i < data.results.length; i++) {
-            var r = data.results[i];
-            console.log(r);
-
-            GoogleMapApi.createMarker({
-                geometry: {
-                    location: {
-                        lng: r.geometry.location.lng,
-                        lat: r.geometry.location.lat
-                    }
-                },
-                title: r.name
-            });
-        }
-    }
+    // function displayPins(data) {
+    //     for (var i = 0; i < data.results.length; i++) {
+    //         var r = data.results[i];
+    //         console.log(r);
+    //     }
+    // }
 
     shared.search = search;
 
