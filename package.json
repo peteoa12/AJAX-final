@@ -1,0 +1,35 @@
+{
+  "name": "ajax-final",
+  "version": "1.0.0",
+  "description": "final project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peteoa12/AJAX-final.git"
+  },
+  "author": "Peter Norman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peteoa12/AJAX-final/issues"
+  },
+  "homepage": "https://github.com/peteoa12/AJAX-final#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "susy": "^2.2.12"
+  },
+  "dependencies": {
+    "breakpoint": "^0.1.6",
+    "breakpoint-sass": "^2.7.1",
+    "browser-sync": "^2.18.2",
+    "gulp-clean-css": "^2.2.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.0.0",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-util": "^3.0.7",
+    "susy": "^2.2.12"
+  }
+}

@@ -1,0 +1,9 @@
+.title {
+	@include full;
+	text-align: center;
+	padding:20px;
+	background-color: $sherbert;
+	color:$red2;
+	font-family: $BlackOps;
+	font-size:2em; 
+}
