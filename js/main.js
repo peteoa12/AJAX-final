@@ -1,11 +1,10 @@
-
 //=========================================================================================================//
 
 //---------------------------------------------Google Maps-------------------------------------------------//
 
 //=========================================================================================================//
 
-var GoogleMapApi = (function(options, r) {
+var GoogleMapApi = (function(options) {
 
     var map, infoWindow;
     var markers = [];
@@ -23,7 +22,7 @@ var GoogleMapApi = (function(options, r) {
         });
     };
 
-    //Adds marker to the map and push to the array.
+   
     function createMarker(result) {
         var marker = new google.maps.Marker({
             position: result.geometry.location,
@@ -33,19 +32,19 @@ var GoogleMapApi = (function(options, r) {
         });
         
         google.maps.event.addListener(marker, 'click', function() {
-            //runs ajax call to Places API for lodging in this vacinity.
+
             GooglePlacesApi.search({
                 latitude: result.geometry.location.lat,
                 longitude: result.geometry.location.lng
             });
 
-            //Creates the info window for the pin.
+
             createInfoWindow(result, marker);
             infowindow.open(map, this);
         });
-
+        markers.push(marker);
     };
-    markers.push(markers);
+
 
     // Sets the map on all markers in the array.
     function setMapOnAll(map) {
@@ -92,7 +91,7 @@ var BandsApi = (function(options) {
     }
 
     function setupSearch() {
-        $('form[name=search] button').click(function(event) {
+        $('form[name=search] button').click(function() {
 
 
             var $e = $(event.currentTarget),
@@ -105,7 +104,7 @@ var BandsApi = (function(options) {
                     dataType: 'jsonp'
                 })
                 .done(function(data) {
-                    console.log(data);
+                    // console.log(data);
                     errorHandeling(data, artist);
                 });
 
@@ -142,7 +141,7 @@ var BandsApi = (function(options) {
     function displayDates(data, result, $results) {
         for (var i = 0; i < data.length; i++) {
             var r = data[i];
-            console.log(r);
+            // console.log(r);
 
             if (r.venue) {
 
@@ -161,8 +160,11 @@ var BandsApi = (function(options) {
 
             }
 
+            // $('.results').append('');
         }
     }
+
+
 
     var init = function() {
         setupListeners();
@@ -185,11 +187,10 @@ var GooglePlacesApi = (function() {
 
     var shared = {};
 
-
     function search(data) {
         var latitude = data.latitude;
         var longitude = data.longitude;
-        var url = "php/googlePlaces.php?location=" + latitude + ',' + longitude + "&radius=5000&rankby=distance&type=lodging";
+        var url = "php/googlePlaces.php?location=" + latitude + ',' + longitude + "&rankby=distance&type=lodging";
 
         $.ajax({
                 url: url,
@@ -197,11 +198,30 @@ var GooglePlacesApi = (function() {
                 dataType: 'json'
             })
             .done(function(data) {
-                console.log("success", data);
+                // console.log("success", data);
+                displayPins(data);
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR, textStatus, errorThrown)
             })
     }
+
+    function displayPins(data) {
+        for (var i = 0; i < data.results.length; i++) {
+            var r = data.results[i];
+            console.log(r);
+
+            GoogleMapApi.createMarker({
+                geometry: {
+                    location: {
+                        lng: r.geometry.location.lng,
+                        lat: r.geometry.location.lat
+                    }
+                },
+                title: r.name
+            });
+        }
+    }
+
     shared.search = search;
 
     return shared;

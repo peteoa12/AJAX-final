@@ -7,7 +7,7 @@
                 $get_string .= $key . "=" . $value . "&";
         }
 
-        $url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyC_G3Bt7ecK_FXgRCAFQA9i-5y8ZPGp5H8&'.$get_string;
+        $url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAJIuB_alMCl6rzsAECbksgBloPbxTW2xs&'.$get_string;
 
         // echo $url;
         // die;
