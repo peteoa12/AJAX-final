@@ -372,21 +372,21 @@ var BandsApi = (function(options) {
         $('#errors').empty();
         if (data.hasOwnProperty("errors")) {
             $("#errors").append(
-                '<div>Never heard of them before!</div>')
+                '<div>Never heard of '+artist+' before!</div>')
 
         } else if (Array.isArray(data) && !data.length) {
             $("#errors").append(
-                '<div>Sorry, there are no events for this artist.</div>')
+                '<div>Sorry, there are no events for '+artist+'.</div>')
 
         } else if (Array.isArray(data) && data.length) {
             GoogleMapApi.deleteMarkers();
             displayDates(data);
             $("#errors").append(
-                '<div>Here you go!</div>')
+                '<div>'+artist+' is playing these dates! Click map icons for more info.</div>')
 
         } else if (typeof data == "object" && data.mbid == null) {
             $("#errors").append(
-                '<div>No artist specified.</div>')
+                '<div>Please enter an artist.</div>')
 
         } else {
             $("#errors").append(
