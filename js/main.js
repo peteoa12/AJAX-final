@@ -278,12 +278,12 @@ var GoogleMapApi = (function(options) {
     };
 
    
-    function createMarker(result, type) {
+    function createMarker(result, info) {
         var marker = new google.maps.Marker({
             position: result.geometry.location,
             map: map,
-            icon:result.icon,
-            title: result.name,
+            icon: result.icon,
+            // title: result.name,
             animation: google.maps.Animation.DROP
         });
         
@@ -295,7 +295,7 @@ var GoogleMapApi = (function(options) {
             });
 
 
-            createInfoWindow(result, marker);
+            setInfoWindowContent(info);
             infowindow.open(map, this);
         });
         markers.push(marker);
@@ -320,9 +320,14 @@ var GoogleMapApi = (function(options) {
         markers = [];
     }
 
-    function createInfoWindow(result, marker) {
-        var contentString = `<h3 class="marker-title">Venue: ${result.title}<h3>
-    <p class="show-date">${result.date}</p><a href="${result.tickets}" target="_blank" class="tickets"><img src="assets/img/movie-tickets.png" alt="tickets"></a><div class="hotels">Hotels nearby</div>`
+    function setInfoWindowContent(info) {
+        var contentString = ``;
+
+        if (info.title) contentString += `<h3 class="marker-title">${info.title}<h3>`;
+        if (info.date) contentString += `<p class="show-date">${info.date}</p>`;
+        if (info.link && info.link_img) contentString += `<a href="${info.link}" target="_blank" class="link"><img src="${info.link_img}"></a>`;
+        if (info.other) contentString += `<div class="other">${info.other}</div>`;
+
         infowindow.setContent(contentString);
     };
 
@@ -355,14 +360,14 @@ var BandsApi = (function(options) {
                 artist = $form.find('input[name=q]').val();
 
             $.ajax({
-                    url: 'http://api.bandsintown.com/artists/' + artist + '/events.json?/api_version=2.0&app_id=Gigabite',
-                    method: 'GET',
-                    dataType: 'jsonp'
-                })
-                .done(function(data) {
-                    console.log(data);
-                    errorHandeling(data, artist);
-                });
+                url: 'http://api.bandsintown.com/artists/' + artist + '/events.json?/api_version=2.0&app_id=Gigabite',
+                method: 'GET',
+                dataType: 'jsonp'
+            })
+            .done(function(data) {
+                console.log(data);
+                errorHandeling(data, artist);
+            });
 
             return false;
         });
@@ -407,11 +412,13 @@ var BandsApi = (function(options) {
                             lng: r.venue.longitude,
                             lat: r.venue.latitude
                         }
-                    },
-                    title: r.venue.name,
-                    url: r.url,
-                    date: new Date(r.datetime),
-                    tickets: r.ticket_url
+                    }
+                }, {
+                    title: "Venue: " + r.venue.name,
+                    date: moment(r.datetime).format("dddd, MMMM Do YYYY, h:mm a"),
+                    link: r.ticket_url,
+                    link_img: "assets/img/movie-tickets.png",
+                    other: "Hotels Nearby"
                 });
             }
         }
@@ -446,20 +453,19 @@ var GooglePlacesApi = (function() {
         var url = "php/googlePlaces.php?location=" + latitude + ',' + longitude + "&rankby=distance&type=lodging";
 
         $.ajax({
-                url: url,
-                method: 'GET',
-                dataType: 'json'
-            })
-            .done(function(data) {
-                console.log("success", data);
-                displayHotels(data);
-            }).fail(function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR, textStatus, errorThrown)
-            })
+            url: url,
+            method: 'GET',
+            dataType: 'json'
+        }).done(function(data) {
+            console.log("success", data);
+            displayHotels(data);
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown)
+        })
     }
 
     function displayHotels(data, result, $results) {
-        $('.hotels').click(function(event) {
+        $('.other').click(function(event) {
             for (var i = 0; i < data.results.length; i++) {
                 var r = data.results[i];
                 var longitude = r.geometry.location.lng;
@@ -468,28 +474,29 @@ var GooglePlacesApi = (function() {
                 //for every hotel you find drop a new pin.
 
 
-                    var image = {
-                      url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-                      // This marker is 32 pixels wide by 32 pixels high.
-                      size: new google.maps.Size(32, 32),
-                      // The origin for this image is (0, 0).
-                      origin: new google.maps.Point(0, 0),
-                      // The anchor for this image is the base of the flagpole at (0, 32).
-                      anchor: new google.maps.Point(15, 32)
-                    };
+                var image = {
+                    url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                    // This marker is 32 pixels wide by 32 pixels high.
+                    size: new google.maps.Size(32, 32),
+                    // The origin for this image is (0, 0).
+                    origin: new google.maps.Point(0, 0),
+                    // The anchor for this image is the base of the flagpole at (0, 32).
+                    anchor: new google.maps.Point(15, 32)
+                };
 
-               
+           
 
-                    GoogleMapApi.createMarker({
-                        geometry: {
-                            location: {
-                                lng: longitude,
-                                lat: latitude
-                            }
-                        },
-                        title: r.name,
-                        icon:image
-                    });
+                GoogleMapApi.createMarker({
+                    geometry: {
+                        location: {
+                            lng: longitude,
+                            lat: latitude,
+                        }
+                    },
+                    icon:image,
+                },{
+                    title: "Hotel: " + r.name,
+                });
              
 
             }
