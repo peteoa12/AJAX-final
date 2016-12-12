@@ -4,16 +4,22 @@
 }
 
 .marker-title {
-
+ 	margin: 10px 0;
+ 	font-size: 1.5em;
+ 	font-weight: 400;
 }
 
 .show-date {
-
+	margin: 20px 0;
+	font-weight: 400;
 }
 
 
-.hotels {
+.other {
 	cursor: pointer;
 	float: right;
-	margin: 20px 0;
+	margin: 20px 2px;
+	font-size: 1.2em;
+	color: #D2474D;
+	cursor: pointer;
 }
