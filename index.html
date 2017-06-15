@@ -3,38 +3,49 @@
 
 <head>
     <title>On Tour</title>
-    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/css/main.min.css">
     <link href="https://fonts.googleapis.com/css?family=Black+Ops+One|Cabin+Sketch" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
 </head>
 
 <body>
-
-    <div class="map_container">
-        <div id="map"></div>
-    </div>
-
-    <div class="form_container">
-        <div class="form_wrapper">
-            <h1 class="title">On Tour</h1>
-            <form name="search">
-                <label for="query">Enter an Artist's name</label>
-                <input name="q" type="text" placeholder="e.g. The Flaming Lips">
-                <button type="submit">Search Events</button>
-                <div class="results">
-                    <ul>
-                    </ul>
+    <div class="mobile_wrapper">
+        <div class="form_container">
+            <div class="image-overlay">
+                    <h1 class="title">On Tour</h1>
+                    <div class="wrapper">
+                    <form name="search">
+                        <label for="query">Enter an Artist's name</label>
+                        <input name="q" type="text" placeholder="e.g. The Flaming Lips">
+                        <button type="submit">Search Events</button>
+                    </form>
+                    <div id="errors"></div>
                 </div>
-            </form>
-            <div id="errors"></div>
+            </div>
+        </div>
+        <div class="map_container">
+            <div id="map"></div>
         </div>
     </div>
+    <div class="clearfix"></div>
+    <div class="results">
+        <ul>
+
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <!--     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
     <script type='text/javascript' src='http://widget.bandsintown.com/javascripts/bit_widget.js'></script>
+    <script type="text/javascript" src="js/googleMap.js"></script>
+    <script type="text/javascript" src="js/bandsInTown.js"></script>
+    <script type="text/javascript" src="js/googlePlaces.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_G3Bt7ecK_FXgRCAFQA9i-5y8ZPGp5H8&callback=GoogleMapApi.init&libraries=places" async defer></script>
 </body>
