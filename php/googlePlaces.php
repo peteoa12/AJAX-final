@@ -1,4 +1,5 @@
 <?php 
+     
         // create curl resource 
         $ch = curl_init(); 
 
@@ -6,6 +7,9 @@
         foreach ($_GET as $key => $value) {
                 $get_string .= $key . "=" . $value . "&";
         }
+
+        // var_dump($get_string);
+        // die;
 
         $url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAJIuB_alMCl6rzsAECbksgBloPbxTW2xs&'.$get_string;
 
@@ -20,6 +24,8 @@
 
         // $output contains the output string 
         $output = curl_exec($ch); 
+
+       
 
         // close curl resource to free up system resources 
         curl_close($ch);   

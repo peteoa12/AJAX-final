@@ -19,9 +19,8 @@ var onError = function(err) {
 
 gulp.task('browser-sync', function(){
 	browserSync.init({
-		proxy: "http://localhost:8888/AJAX-final/",
+		proxy: "http://localhost/AJAX-final/",
 		files: ["*.php"]
-
 	});
 });
 

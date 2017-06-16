@@ -269,7 +269,7 @@ var GoogleMapApi = (function(options) {
         
         google.maps.event.addListener(marker, 'click', function() {
 
-            map.setZoom(13);
+            map.setZoom(15);
             map.panTo(this.position);
 
             GooglePlaces.search({

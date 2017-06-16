@@ -1,4 +1,37 @@
 
+.form_container {
+
+  background-image: url(../img/concert.jpg);
+  background-position: center;
+  float: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 50%;
+  width: 100%;
+  transition:all 0.4s ease-in-out;
+
+
+  @include breakpoint($medium) {
+    @include span(4 of 12);
+  }
+
+  .main-heading {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0,0,0,.4);
+    font-family: $Cabin;
+    font-size: 3em;
+    color: white;
+  }
+
+}
+
+#search {
+  text-align: center;
+  margin:15px 0;
+}
+
+
 form {
   @include container;
   height: auto;
@@ -12,23 +45,6 @@ form {
   float: left;
   width: 100%;
 
-  // @include breakpoint($medium) {
-  //   width: span(10);
-  //   margin-left: span(1);
-  //   margin-right: span(1);
-  // }
-
-  // @include breakpoint($large) {
-  //   width: span(6);
-  //   margin-left: span(3);
-  //   margin-right: span(3);
-  // }
-
-  // @include breakpoint($jumbo) {
-  //   @include span(10);
-  //   margin-left: span(1);
-  //   margin-right: span(1);
-  // }
 
   label {
     font-size:14px;
@@ -47,7 +63,7 @@ form {
     width:100%;
     outline:none;
     border:1px solid #bbb;
-    border-radius:20px;
+    border-radius:50px;
     display:inline-block;
     box-sizing:border-box;
     transition:0.2s ease-in-out all;
@@ -60,17 +76,14 @@ form {
   }
 
   button {
-    padding:15px 50px;
-    width:auto;
-    background:$red2;
-    border:none;
-    color:white;
-    cursor:pointer;
-    display:inline-block;
-    float:right;
-    clear:right;
-    transition:0.2s ease all;
-    box-shadow: 0px 3px 0px 0px rgba(2,2,2,0.5);
+    padding: 15px 50px;
+    background: $sherbert;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: .2s ease all;
+    box-shadow: 0 3px 0 0 rgba(2,2,2,.5);
     
     &:active {
       transform: translate(0px, 5px);

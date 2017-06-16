@@ -14,7 +14,9 @@ var GooglePlaces = (function() {
         var latitude = data.latitude;
         var longitude = data.longitude;
         var url = "php/googlePlaces.php?location=" + latitude + ',' + longitude + "&rankby=distance&type=lodging";
+        console.log("google places search", url)
 
+        
         $.ajax({
             url: url,
             method: 'GET',
@@ -49,7 +51,7 @@ var GooglePlaces = (function() {
 
            
 
-                GoogleMap.createMarker({
+                GoogleMapApi.createMarker({
                     geometry: {
                         location: {
                             lng: longitude,

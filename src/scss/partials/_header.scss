@@ -1,18 +1,7 @@
 
-.title {
-	@include full;
-	text-align: center;
-	padding:20px;
-	background-color:rgba(0,0,0,0.4);
-	color:$red2;
-	font-family: $Cabin;
-	font-size:3em; 
-}
-
-.metal {
-	width: span(4);
-	margin-right: span(4);
-	margin-left: span(4); 
-
+.header-scrolled {
+	position: fixed;
+	top: 0;
+	z-index: 88;
 }
 

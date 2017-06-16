@@ -1,0 +1,13 @@
+$susy: (
+  flow: ltr, 
+  output: float, 
+  math: fluid, 
+  column-width: 40px, 
+  container: 90%,
+  container-position: center, 
+  last-flow: to,
+  columns: 12,
+  gutters: 0,
+  gutter-position: after, 
+  global-box-sizing: border-box, 
+);

@@ -59,7 +59,8 @@ var BandsApi = (function(options) {
         }
     }
 
-    function displayDates(data, result, $results) {
+    function displayDates(data, r) {
+        $('.results').empty();
         for (var i = 0; i < data.length; i++) {
             var r = data[i];
             console.log(r);
@@ -83,20 +84,24 @@ var BandsApi = (function(options) {
                 });
             }
 
-            $('.results').append(
-                `<li>
-                     <h2 class="city">${r.venue.city}</h2>
-                     <div class="list venue">${r.venue.name}</div>
-                     <div class="list date">${r.datetime}</div>
-                     <a class="list tickets" href="${r.ticket_url}" target="_blank" class="link">
-                        <img src="assets/img/movie-tickets.png">
-                     </a>
-                     <a class="list hotels" href="#hotels">Find Hotels</a>
-                </li>`
-            );
+            createList(r);
+
         }
     }
 
+    function createList(r) {
+        $('.results').append(
+            `<li>
+                 <h2 class="city">${r.venue.city}</h2>
+                 <div class="list venue">${r.venue.name}</div>
+                 <div class="list date">${r.datetime}</div>
+                 <a class="list tickets" href="${r.ticket_url}" target="_blank" class="link">
+                    <img src="assets/img/movie-tickets.png">
+                 </a>
+                 <a class="list hotels" href="#hotels">Find Hotels</a>
+            </li>`
+        );
+    }
 
 
 
