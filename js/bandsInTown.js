@@ -91,14 +91,16 @@ var BandsApi = (function(options) {
 
     function createList(r) {
         $('.results').append(
-            `<li>
+            `<li class="list-item">
                  <h2 class="city">${r.venue.city}</h2>
-                 <div class="list venue">${r.venue.name}</div>
-                 <div class="list date">${r.datetime}</div>
-                 <a class="list tickets" href="${r.ticket_url}" target="_blank" class="link">
-                    <img src="assets/img/movie-tickets.png">
-                 </a>
-                 <a class="list hotels" href="#hotels">Find Hotels</a>
+                 <div class="wrapper">
+                     <div class="list venue">${r.venue.name}</div>
+                     <div class="list date">September 5th, 2017 5:00pm</div>
+                     <a class="list tickets" href="${r.ticket_url}" target="_blank" class="link">
+                        <img src="assets/img/movie-tickets.png">
+                     </a>
+                     <a class="list hotels" href="#hotels">Find Hotels</a>
+                 </div>
             </li>`
         );
     }

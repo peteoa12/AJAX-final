@@ -1,0 +1,45 @@
+.list-item {
+	border-top:3px solid #BBACBF;
+	position: relative;
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+.city {
+	text-align: center;
+	background-color: #A5A195;
+	color: white;
+	font-family: 'Cabin sketch', cursive;
+	font-size: 1.6em;
+	padding: 0.3em;
+}
+
+.venue {
+
+}
+
+.list {
+	margin: 12px 0;
+    text-transform: uppercase;
+    font-family: 'Pt Sans', sans-serif;
+}
+
+
+.tickets {
+	position: absolute;
+	top: 102px;
+	left: 17%;
+} 
+
+.hotels {
+	position: absolute;
+	top: 117px;
+	right: 24%;
+	font-weight: 700;
+	color: royalblue;
+	border: 1px solid black;
+	padding: 10px;
+	text-decoration: underline;
+}
