@@ -99,7 +99,7 @@ var BandsApi = (function(options) {
                      <a class="list tickets" href="${r.ticket_url}" target="_blank" class="link">
                         <img src="assets/img/movie-tickets.png">
                      </a>
-                     <a class="list hotels" href="#hotels">Find Hotels</a>
+                     <a class="list hotels" href="https://giphy.com/embed/qF3loRbiqLT44" target="_blank">Find Hotels</a>
                  </div>
             </li>`
         );

@@ -263,7 +263,6 @@ var GoogleMapApi = (function(options) {
             position: result.geometry.location,
             map: map,
             icon: result.icon,
-            // title: result.name,
             animation: google.maps.Animation.DROP
         });
         
