@@ -1,7 +1,11 @@
+
+
 .list-item {
 	border-top:3px solid #BBACBF;
 	position: relative;
 	text-decoration: none;
+	max-width: 900px;
+	margin: 0 auto;
 }
 
 li {
@@ -29,13 +33,13 @@ li {
 
 .tickets {
 	position: absolute;
-	top: 102px;
+	top: 122px;
 	left: 17%;
 } 
 
 .hotels {
 	position: absolute;
-	top: 117px;
+	top: 137px;
 	right: 24%;
 	font-weight: 700;
 	color: royalblue;

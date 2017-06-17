@@ -1,7 +1,18 @@
 
 
 #errors {
-	display: none;
+	text-align: center;
+    width: 97%;
+    color: #fff;
+    font-family: "Cabin Sketch",cursive;
+    font-size: 1.45em;
+    margin: 25px auto;
+
+    .metal {
+    	width: 20%;
+    	margin: 20px 0;
+    }
+
 
 	@include breakpoint($medium) {
 		display: inherit;

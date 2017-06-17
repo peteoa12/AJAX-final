@@ -34,7 +34,7 @@ var BandsApi = (function(options) {
     }
 
     function errorHandeling(data, artist) {
-        $('#errors').empty();
+        $('#errors').fadeOut();
         if (data.hasOwnProperty("errors")) {
             $("#errors").append(
                 '<div>Never heard of '+artist+' before!</div>')
@@ -92,10 +92,10 @@ var BandsApi = (function(options) {
     function createList(r) {
         $('.results').append(
             `<li class="list-item">
-                 <h2 class="city">${r.venue.city}</h2>
-                 <div class="wrapper">
+                 <h2 class="city">${r.venue.city}, ${r.venue.country}</h2>
+                 <div class="list-wrapper">
                      <div class="list venue">${r.venue.name}</div>
-                     <div class="list date">September 5th, 2017 5:00pm</div>
+                     <div class="list date">${moment(r.datetime).format("dddd, MMMM Do YYYY, h:mm a")}</div>
                      <a class="list tickets" href="${r.ticket_url}" target="_blank" class="link">
                         <img src="assets/img/movie-tickets.png">
                      </a>

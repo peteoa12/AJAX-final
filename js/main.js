@@ -2,8 +2,8 @@
 //Sticky form
 $(window).scroll(function(){
   if($(this).scrollTop()> 150) {
-    $('.stickyForm').addClass('header-scrolled');
+    $('.sticky').addClass('header-scrolled');
   } else {
-    $('.stickyForm').removeClass('header-scrolled');
+    $('.sticky').removeClass('header-scrolled');
   }
 })

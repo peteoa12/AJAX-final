@@ -1,14 +1,25 @@
 html, body {
   height: 100%;
   width: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding:0;
   background-color:white;
   -webkit-font-smoothing: antialiased;
+  max-width: 1440px;
 }
 
 .wrapper {
   @include container;
+}
+
+.list-wrapper {
+  @include container;
+  padding: 20px 0 75px 0;
+}
+
+.map-form {
+  width: 100%;
+  height: 50vh;
 }
 
 .img-overlay {
