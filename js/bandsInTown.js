@@ -9,7 +9,7 @@ var BandsApi = (function(options) {
 
     function setupListeners() {
         setupSearch();
-        // zoomToMapMarker();
+        zoomToMapMarker();
     }
 
     function setupSearch() {
@@ -117,12 +117,12 @@ var BandsApi = (function(options) {
         );
     }
 
-    // function zoomToMapMarker(data, r){
-    //     $("body").on('click', '.hotels', function(event) {
-    //         GooglePlaces.displayHotels();
+    function zoomToMapMarker(data, r){
+        $("body").on('click', '.hotels', function(event) {
+            GooglePlaces.displayHotels();
                             
-    //     });
-    // }
+        });
+    }
 
 
 
