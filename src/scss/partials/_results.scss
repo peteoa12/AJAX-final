@@ -1,4 +1,6 @@
-
+// .results {
+//     position: relative;
+// }
 
 #errors {
 	text-align: center;
@@ -12,20 +14,6 @@
     	width: 20%;
     	margin: 20px 0;
     }
-
-
-	@include breakpoint($medium) {
-		display: inherit;
-		float: left;
-		text-align: left;
-		width: span(8);
-		margin-left: span(2);
-		margin-right: span(2);
-		color: white;
-		font-family: $Cabin;
-		font-size: 1.75em;
-		margin-top: 50px;
-	}
 	
 }
 

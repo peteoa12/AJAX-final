@@ -9,12 +9,12 @@ var BandsApi = (function(options) {
 
     function setupListeners() {
         setupSearch();
+        // zoomToMapMarker();
     }
 
     function setupSearch() {
         $('form[name=search] button').click(function() {
-
-
+            scroll();
             var $e = $(event.currentTarget),
                 $form = $e.closest('form'),
                 artist = $form.find('input[name=q]').val();
@@ -33,17 +33,25 @@ var BandsApi = (function(options) {
         });
     }
 
+    function scroll(){
+        console.log('I was scrolled');
+        $(window).scrollTo('.map_container');
+    }
+
     function errorHandeling(data, artist) {
-        $('#errors').fadeOut();
+        $('#errors').empty();
         if (data.hasOwnProperty("errors")) {
+            $('.results').empty();
             $("#errors").append(
                 '<div>Never heard of '+artist+' before!</div>')
 
         } else if (Array.isArray(data) && !data.length) {
+            $('.results').empty();
             $("#errors").append(
                 '<div>Sorry, there are no events for '+artist+'.</div>')
 
         } else if (Array.isArray(data) && data.length) {
+            $('.results').empty();
             GoogleMapApi.deleteMarkers();
             displayDates(data);
             $("#errors").append(
@@ -96,14 +104,25 @@ var BandsApi = (function(options) {
                  <div class="list-wrapper">
                      <div class="list venue">${r.venue.name}</div>
                      <div class="list date">${moment(r.datetime).format("dddd, MMMM Do YYYY, h:mm a")}</div>
-                     <a class="list tickets" href="${r.ticket_url}" target="_blank" class="link">
-                        <img src="assets/img/movie-tickets.png">
+                     <a class="list-icons tickets" href="${r.ticket_url}" target="_blank" class="link">
+                        <img src="assets/img/ticket-icon.svg"></br>
+                        <span>Get Tickets</span>
                      </a>
-                     <a class="list hotels" href="https://giphy.com/embed/qF3loRbiqLT44" target="_blank">Find Hotels</a>
+                     <div class="list-icons hotels">
+                        <img src="assets/img/hotel-icon.svg"></br>
+                        <span>Find Hotels</span>
+                     </div>
                  </div>
             </li>`
         );
     }
+
+    // function zoomToMapMarker(data, r){
+    //     $("body").on('click', '.hotels', function(event) {
+    //         GooglePlaces.displayHotels();
+                            
+    //     });
+    // }
 
 
 

@@ -72,7 +72,10 @@ var GooglePlaces = (function() {
 
     shared.search = search;
 
-    return shared;
+    return {
+        shared: shared,
+        displayHotels:displayHotels 
+    } 
 
 
 }());

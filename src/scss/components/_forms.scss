@@ -13,7 +13,8 @@
 
 
   @include breakpoint($medium) {
-    @include span(4 of 12);
+    width: 33.33333%;
+    float: left;
   }
 
   .main-heading {
@@ -74,7 +75,7 @@ form {
 
   button {
     padding: 15px 50px;
-    background: $sherbert;
+    background: #FF0000;
     border: none;
     color: #fff;
     font-size: 0.8em;

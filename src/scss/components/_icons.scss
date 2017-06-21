@@ -1,0 +1,27 @@
+
+
+.list-icons {
+	position: absolute;
+	width: 100px;
+	top: 145px;
+	font-family: $body;
+	text-align: center;
+	text-decoration: none;
+
+	img {
+		width: 50%;
+	}
+	span {
+		margin-top: 10px;
+		color: royalblue;
+	}
+}
+
+.tickets {
+	left: 17%;
+} 
+
+.hotels {
+	right: 24%;
+	cursor:pointer;
+}
