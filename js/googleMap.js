@@ -306,7 +306,7 @@ var GoogleMapApi = (function(options) {
 
         if (info.title) contentString += `<h3 class="marker-title">${info.title}<h3>`;
         if (info.date) contentString += `<p class="show-date">${info.date}</p>`;
-        if (info.link && info.link_img) contentString += `<a href="${info.link}" target="_blank" class="link"><img src="${info.link_img}"></a>`;
+        if (info.link && info.link_img) contentString += `<a class="infoWindow-icon" href="${info.link}" target="_blank" class="link"><span>Get Tickets</span></a>`;
         if (info.other) contentString += `<div class="other">${info.description}</div>`;
 
         infowindow.setContent(contentString);

@@ -17,6 +17,23 @@
 	}
 }
 
+.infoWindow-icon {
+	text-align: center;
+	text-decoration: none;
+	color: royalblue;
+
+	img{
+		width: 20%;
+	}
+
+	span {
+		font-size: 1.2em;
+	    margin: 20px 13px;
+	    float: left;
+		
+	}
+}
+
 .tickets {
 	left: 17%;
 } 

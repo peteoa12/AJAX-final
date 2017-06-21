@@ -47,6 +47,7 @@ var GooglePlaces = (function() {
                     origin: new google.maps.Point(0, 0),
                     // The anchor for this image is the base of the flagpole at (0, 32).
                     anchor: new google.maps.Point(15, 32)
+                    
                 };
 
            
@@ -74,7 +75,8 @@ var GooglePlaces = (function() {
 
     return {
         shared: shared,
-        displayHotels:displayHotels 
+        displayHotels:displayHotels ,
+        search:search
     } 
 
 

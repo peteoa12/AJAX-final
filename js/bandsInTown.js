@@ -86,7 +86,7 @@ var BandsApi = (function(options) {
                     title: "Venue: " + r.venue.name,
                     date: moment(r.datetime).format("dddd, MMMM Do YYYY, h:mm a"),
                     link: r.ticket_url,
-                    link_img: "assets/img/movie-tickets.png",
+                    link_img: "assets/img/ticket-icon.svg",
                     other: "assets/img/hotel.png",
                     description:"Hotels nearby",
                 });
@@ -119,7 +119,6 @@ var BandsApi = (function(options) {
 
     function zoomToMapMarker(data, r){
         $("body").on('click', '.hotels', function(event) {
-            GooglePlaces.displayHotels();
                             
         });
     }
