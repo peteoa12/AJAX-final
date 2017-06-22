@@ -12,7 +12,7 @@ var BandsApi = (function(options) {
         zoomToMapMarker();
     }
 
-    function setupSearch() {
+    function setupSearch(data) {
         $('form[name=search] button').click(function() {
             scroll();
             var $e = $(event.currentTarget),
@@ -92,34 +92,53 @@ var BandsApi = (function(options) {
                 });
             }
 
-            createList(r);
+            createListItem(r);
 
         }
     }
 
-    function createList(r) {
-        $('.results').append(
-            `<li class="list-item">
-                 <h2 class="city">${r.venue.city}, ${r.venue.country}</h2>
-                 <div class="list-wrapper">
-                     <div class="list venue">${r.venue.name}</div>
-                     <div class="list date">${moment(r.datetime).format("dddd, MMMM Do YYYY, h:mm a")}</div>
-                     <a class="list-icons tickets" href="${r.ticket_url}" target="_blank" class="link">
-                        <img src="assets/img/ticket-icon.svg"></br>
-                        <span>Get Tickets</span>
-                     </a>
-                     <div class="list-icons hotels">
-                        <img src="assets/img/hotel-icon.svg"></br>
-                        <span>Find Hotels</span>
-                     </div>
+    function createListItem(r) {
+
+        var $newItem = $(`<li class="list-item">
+             <h2 class="city">${r.venue.city}, ${r.venue.country}</h2>
+             <div class="list-wrapper">
+                 <div class="list venue">${r.venue.name}</div>
+                 <div class="list date">${moment(r.datetime).format("dddd, MMMM Do YYYY, h:mm a")}</div>
+                 <a class="list-icons tickets" href="${r.ticket_url}" target="_blank" class="link">
+                    <img src="assets/img/ticket-icon.svg"></br>
+                    <span>Get Tickets</span>
+                 </a>
+                 <div class="list-icons hotels">
+                    <img src="assets/img/hotel-icon.svg"></br>
+                    <span>Find Hotels</span>
                  </div>
-            </li>`
-        );
+             </div>
+        </li>`);
+
+        $('.results').append($newItem);
+
+        $newItem.find(".hotels").on("click", function() {
+            // console.log("hotel button clicked", r);
+
+            
+            GooglePlaces.search({
+                latitude: r.venue.latitude,
+                longitude: r.venue.longitude
+            });
+
+
+            GoogleMapApi.getMap().setZoom(15);
+            GoogleMapApi.getMap().panTo({
+                lat: r.venue.latitude,
+                lng: r.venue.longitude
+            });
+        })
     }
 
-    function zoomToMapMarker(data, r){
+   
+    function zoomToMapMarker(){
         $("body").on('click', '.hotels', function(event) {
-                            
+                 console.log()
         });
     }
 

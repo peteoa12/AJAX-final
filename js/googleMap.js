@@ -312,11 +312,17 @@ var GoogleMapApi = (function(options) {
         infowindow.setContent(contentString);
     };
 
+
+    function getMap() {
+        return map;
+    }
+
     return {
         init: initMap,
         setMapOnAll: setMapOnAll,
         createMarker: createMarker,
-        deleteMarkers: deleteMarkers
+        deleteMarkers: deleteMarkers,
+        getMap: getMap
     };
 
 }());

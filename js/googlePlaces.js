@@ -29,7 +29,7 @@ var GooglePlaces = (function() {
         })
     }
 
-    function displayHotels(data, result, $results) {
+    function displayHotels(data) {
         $('.other').click(function(event) {
             for (var i = 0; i < data.results.length; i++) {
                 var r = data.results[i];
@@ -50,7 +50,6 @@ var GooglePlaces = (function() {
                     
                 };
 
-           
 
                 GoogleMapApi.createMarker({
                     geometry: {
